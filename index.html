@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exemplos de Eventos JS</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 30px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    #bloco, #caixa {
+      width: 100px;
+      height: 100px;
+      margin-top: 10px;
+      text-align: center;
+      line-height: 100px;
+    }
+
+    #bloco {
+      background-color: orange;
+    }
+
+    #caixa {
+      background-color: #ccc;
+    }
+
+    .botao {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mini Página de Eventos JavaScript</h1>
+
+  <section>
+    <h2>1. Clique</h2>
+    <button id="botaoClique">Clique aqui</button>
+  </section>
+
+  <section>
+    <h2>2. Teclado (keydown)</h2>
+    <input type="text" id="campoTeclado" placeholder="Pressione uma tecla" />
+  </section>
+
+  <section>
+    <h2>3. Foco e Blur</h2>
+    <input type="text" id="campoFoco" placeholder="Foque e depois saia" />
+  </section>
+
+  <section>
+    <h2>4. Change (Select)</h2>
+    <select id="seletor">
+      <option value="">Escolha algo</option>
+      <option value="opcao1">Opção 1</option>
+      <option value="opcao2">Opção 2</option>
+    </select>
+  </section>
+
+  <section>
+    <h2>5. Duplo Clique</h2>
+    <div id="caixa">Clique duplo</div>
+  </section>
+
+  <section>
+    <h2>6. Formulário (submit)</h2>
+    <form id="formulario">
+      <input type="text" required placeholder="Seu nome" />
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>7. Input (ao digitar)</h2>
+    <input type="text" id="campoInput" placeholder="Digite algo" />
+  </section>
+
+  <section>
+    <h2>8. Mouseover / Mouseout</h2>
+    <div id="bloco">Passe o mouse</div>
+  </section>
+
+  <section>
+    <h2>9. Scroll da página</h2>
+    <p>Role para ver no console...</p>
+    <div style="height: 300px;"></div>
+  </section>
+
+  <section>
+    <h2>10. Resize (tamanho da janela)</h2>
+    <p>Redimensione a janela e veja o console.</p>
+  </section>
+
+  <section>
+    <h2>11. Clique direito (contextmenu)</h2>
+    <p>Clique com o botão direito nesta página.</p>
+  </section>
+
+  <section>
+    <h2>12. Vários botões (loop)</h2>
+    <button class="botao">Botão 1</button>
+    <button class="botao">Botão 2</button>
+    <button class="botao">Botão 3</button>
+  </section>
+
+  <script>
+    // 1. Clique
+    document.getElementById("botaoClique").addEventListener("click", () => {
+      alert("Você clicou no botão!");
+    });
+
+    // 2. Keydown
+    document.getElementById("campoTeclado").addEventListener("keydown", (e) => {
+      console.log("Tecla pressionada:", e.key);
+    });
+
+    // 3. Focus e Blur
+    const campoFoco = document.getElementById("campoFoco");
+    campoFoco.addEventListener("focus", () => console.log("Campo com foco."));
+    campoFoco.addEventListener("blur", () => console.log("Campo perdeu o foco."));
+
+    // 4. Change
+    document.getElementById("seletor").addEventListener("change", (e) => {
+      console.log("Valor selecionado:", e.target.value);
+    });
+
+    // 5. Duplo clique
+    const caixa = document.getElementById("caixa");
+    caixa.addEventListener("dblclick", () => {
+      caixa.textContent = "Duplo clique!";
+      caixa.style.backgroundColor = "#f77";
+    });
+
+    // 6. Formulário
+    document.getElementById("formulario").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Formulário enviado (simulado)!");
+    });
+
+    // 7. Input
+    document.getElementById("campoInput").addEventListener("input", (e) => {
+      console.log("Texto:", e.target.value);
+    });
+
+    // 8. Mouseover / Mouseout
+    const bloco = document.getElementById("bloco");
+    bloco.addEventListener("mouseover", () => {
+      bloco.style.backgroundColor = "red";
+    });
+    bloco.addEventListener("mouseout", () => {
+      bloco.style.backgroundColor = "orange";
+    });
+
+    // 9. Scroll
+    window.addEventListener("scroll", () => {
+      console.log("Página sendo rolada...");
+    });
+
+    // 10. Resize
+    window.addEventListener("resize", () => {
+      console.log("Nova largura da janela:", window.innerWidth);
+    });
+
+    // 11. Context menu
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      alert("Clique direito bloqueado.");
+    });
+
+    // 12. Vários botões
+    document.querySelectorAll(".botao").forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        alert(`Você clicou no botão ${index + 1}`);
+      });
+    });
+
+    // Extra: DOMContentLoaded
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("DOM totalmente carregado!");
+    });
+  </script>
+
+</body>
+</html>
